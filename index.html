@@ -6,10 +6,10 @@
     <title>El Cuarto de San Alejo | Tienda Fotográfica Vintage & Proyecto Calíope</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: UnifrakturMaguntia para estilo San Alejo + Inter y JetBrains Mono -->
+    <!-- Google Fonts: UnifrakturMaguntia para San Alejo + Roboto Slab & Lora e Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto+Slab:wght@600;700;800;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -19,6 +19,8 @@
                 extend: {
                     fontFamily: {
                         'sanalejo': ['"UnifrakturMaguntia"', 'serif'],
+                        'amasis': ['"Amasis MT Pro"', '"Amasis MT"', '"Roboto Slab"', '"Lora"', 'Georgia', 'serif'],
+                        'amasis-black': ['"Amasis MT Pro Black"', '"Amasis MT Pro"', '"Roboto Slab"', '"Lora"', 'Georgia', 'serif'],
                         'sans': ['"Inter"', 'sans-serif'],
                         'mono': ['"JetBrains Mono"', 'monospace'],
                     },
@@ -50,12 +52,28 @@
             font-family: 'UnifrakturMaguntia', serif;
             letter-spacing: 0.03em;
         }
-        /* Textura sutil de grano fotográfico */
+        .font-amasis {
+            font-family: 'Amasis MT Pro', 'Amasis MT', 'Roboto Slab', 'Lora', Georgia, serif;
+        }
+        .font-amasis-black {
+            font-family: 'Amasis MT Pro Black', 'Amasis MT Pro', 'Roboto Slab', 'Lora', Georgia, serif;
+            font-weight: 800;
+        }
+        h3 {
+            font-family: 'Amasis MT Pro Black', 'Amasis MT Pro', 'Roboto Slab', 'Lora', Georgia, serif;
+            font-weight: 700;
+        }
+        .view-panel {
+            animation: fadeInView 0.35s ease-out forwards;
+        }
+        @keyframes fadeInView {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .film-grain {
             background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
             background-size: 24px 24px;
         }
-        /* Animación suave para tarjetas */
         .card-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -64,7 +82,6 @@
             border-color: #DC2626;
             box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.25);
         }
-        /* Barra de desplazamiento personalizada */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -86,333 +103,429 @@
     <header class="sticky top-0 z-50 bg-sanBlack/95 backdrop-blur-md border-b border-sanBlack-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Identificador Gráfico + Nombre -->
-                <a href="#inicio" class="flex items-center gap-3 group">
-                    <!-- SVG Isotipo Oficial: Círculo negro, puerta blanca abierta y figuras rojas con aureola -->
+                <!-- Identificador Gráfico + Nombre (Regresa a Vista Principal) -->
+                <button type="button" onclick="switchView('principal')" class="flex items-center gap-3 group text-left focus:outline-none">
                     <div class="w-12 h-12 rounded-full border border-neutral-700 group-hover:border-sanRed transition-colors overflow-hidden flex-shrink-0 bg-black shadow-lg">
                         <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="Logo El Cuarto de San Alejo">
                             <circle cx="100" cy="100" r="98" fill="#000000"/>
-                            <!-- Marco de la puerta blanca -->
                             <rect x="88" y="42" width="54" height="106" fill="#FFFFFF"/>
-                            <!-- Hoja de puerta abierta en negro -->
                             <polygon points="142,42 114,52 114,136 142,148" fill="#000000"/>
-                            <!-- Borde interior blanco -->
                             <polyline points="114,52 114,136 142,148" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
                             
-                            <!-- Personaje Izquierdo (Rojo) -->
                             <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Aureola -->
                                 <ellipse cx="64" cy="52" rx="13" ry="4.5" transform="rotate(-10 64 52)"/>
-                                <!-- Cabeza -->
                                 <circle cx="62" cy="68" r="8.5"/>
-                                <!-- Torso -->
                                 <line x1="60" y1="77" x2="54" y2="112"/>
-                                <!-- Brazo izquierdo en cintura -->
                                 <polyline points="59,84 44,96 55,107"/>
-                                <!-- Brazo derecho señalando puerta -->
                                 <polyline points="59,84 71,95 83,95"/>
-                                <!-- Pierna izquierda -->
                                 <polyline points="54,112 45,132 51,148 45,149"/>
-                                <!-- Pierna derecha -->
                                 <polyline points="54,112 67,127 65,144 71,144"/>
                             </g>
 
-                            <!-- Personaje Derecho asomándose por la puerta (Rojo) -->
                             <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Aureola -->
                                 <ellipse cx="139" cy="48" rx="13" ry="4.5" transform="rotate(10 139 48)"/>
-                                <!-- Cabeza parcialmente detrás del marco -->
                                 <path d="M 136 58 A 8.5 8.5 0 1 0 136 74" />
                                 <path d="M 142 58 A 8.5 8.5 0 0 1 142 74" />
-                                <!-- Brazo señalando hacia adentro -->
                                 <polyline points="135,84 126,93 116,91"/>
-                                <!-- Torso y brazo derecho por fuera del marco -->
                                 <line x1="143" y1="76" x2="149" y2="110"/>
                                 <polyline points="144,83 159,95 148,106"/>
-                                <!-- Piernas -->
                                 <polyline points="149,110 158,128 153,143 148,144"/>
                                 <polyline points="149,110 142,126 142,143"/>
                             </g>
                         </svg>
                     </div>
                     <div>
-                        <span class="block text-xs uppercase tracking-widest text-neutral-400">Enfocar • Tienda Fotográfica</span>
+                        <span class="block text-xs font-amasis uppercase tracking-widest text-neutral-400">Enfocar • Tienda Fotográfica</span>
                         <span class="font-sanalejo text-2xl sm:text-3xl text-sanRed leading-none">El Cuarto de San Alejo</span>
                     </div>
-                </a>
+                </button>
 
-                <!-- Menú Desktop -->
-                <nav class="hidden md:flex items-center space-x-7 text-sm font-medium">
-                    <a href="#perfil" class="text-white hover:text-sanRed transition-colors">Perfil</a>
-                    <a href="#historia" class="text-white hover:text-sanRed transition-colors">Historia</a>
-                    <a href="#servicios" class="text-white hover:text-sanRed transition-colors">Servicios</a>
-                    <a href="#catalogo" class="text-white hover:text-sanRed transition-colors">Catálogo</a>
-                    <a href="https://www.google.com/maps/place/Cl+22+%236-24,+Bogot%C3%A1/@4.6078745,-74.072603,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9998bf32e99d:0xe22620b47fefcb9c!8m2!3d4.6078745!4d-74.0700281!16s%2Fg%2F11m63npml5?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="bg-sanRed hover:bg-sanRed-dark text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md shadow-sanRed/20">
+                <!-- Controles Derecha: Visítanos + Menú de 3 puntos -->
+                <div class="flex items-center gap-3 relative">
+                    <a href="https://www.google.com/maps/place/Cl+22+%236-24,+Bogot%C3%A1/@4.6078745,-74.072603,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9998bf32e99d:0xe22620b47fefcb9c!8m2!3d4.6078745!4d-74.0700281!16s%2Fg%2F11m63npml5?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 bg-sanRed hover:bg-sanRed-dark text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-md shadow-sanRed/20">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
                         Visítanos
                     </a>
-                </nav>
 
-                <!-- Botón Menú Móvil -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white hover:bg-sanBlack-elevated focus:outline-none" aria-label="Abrir menú">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
+                    <!-- Botón de Tres Puntos para desplegar las secciones -->
+                    <button id="dots-menu-btn" type="button" class="p-2.5 rounded-xl bg-sanBlack-elevated hover:bg-neutral-800 border border-neutral-700 hover:border-sanRed text-white transition-all flex items-center gap-2 focus:outline-none" aria-label="Abrir secciones de la página" aria-expanded="false">
+                        <i data-lucide="more-vertical" class="w-5 h-5 text-sanRed"></i>
+                        <span class="text-xs font-mono uppercase tracking-wider hidden md:inline">Secciones</span>
+                    </button>
+
+                    <!-- Menú Desplegable de Tres Puntos -->
+                    <div id="dots-dropdown" class="hidden absolute right-0 top-14 w-72 rounded-2xl bg-sanBlack-card border border-neutral-800 shadow-2xl shadow-black/80 py-2 z-50">
+                        <div class="px-4 py-2 border-b border-neutral-800/80">
+                            <span class="text-[11px] font-mono uppercase tracking-widest text-neutral-400">Navegar por sección</span>
+                        </div>
+                        
+                        <button type="button" onclick="switchView('principal')" data-nav="principal" class="nav-option w-full text-left px-4 py-3 flex items-center gap-3 text-sm text-white hover:bg-sanBlack-elevated transition-colors bg-sanRed/15 border-l-2 border-sanRed">
+                            <i data-lucide="home" class="w-4 h-4 text-sanRed"></i>
+                            <div>
+                                <span class="block font-semibold">Inicio & Historia</span>
+                                <span class="block text-[11px] text-neutral-400">Identidad, línea de tiempo y contacto</span>
+                            </div>
+                        </button>
+
+                        <button type="button" onclick="switchView('servicios')" data-nav="servicios" class="nav-option w-full text-left px-4 py-3 flex items-center gap-3 text-sm text-white hover:bg-sanBlack-elevated transition-colors">
+                            <i data-lucide="wrench" class="w-4 h-4 text-sanRed"></i>
+                            <div>
+                                <span class="block font-semibold">Servicios Especializados</span>
+                                <span class="block text-[11px] text-neutral-400">Digitalización, reparación y encargos</span>
+                            </div>
+                        </button>
+
+                        <button type="button" onclick="switchView('catalogo')" data-nav="catalogo" class="nav-option w-full text-left px-4 py-3 flex items-center gap-3 text-sm text-white hover:bg-sanBlack-elevated transition-colors">
+                            <i data-lucide="camera" class="w-4 h-4 text-sanRed"></i>
+                            <div>
+                                <span class="block font-semibold">Catálogo de Equipos</span>
+                                <span class="block text-[11px] text-neutral-400">35mm, Digicams, Instax y Videocámaras</span>
+                            </div>
+                        </button>
+
+                        <div class="sm:hidden border-t border-neutral-800/80 mt-1 pt-1 px-3 pb-1">
+                            <a href="https://www.google.com/maps/place/Cl+22+%236-24,+Bogot%C3%A1/@4.6078745,-74.072603,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9998bf32e99d:0xe22620b47fefcb9c!8m2!3d4.6078745!4d-74.0700281!16s%2Fg%2F11m63npml5?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-lg bg-sanRed text-white text-xs font-semibold flex items-center justify-center gap-1.5">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                                Visítanos en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- Menú Desplegable Móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-sanBlack-card border-b border-sanBlack-border px-4 pt-2 pb-5 space-y-2">
-            <a href="#perfil" class="block px-3 py-2.5 rounded-lg text-white hover:bg-sanBlack-elevated hover:text-sanRed">Perfil del Establecimiento</a>
-            <a href="#historia" class="block px-3 py-2.5 rounded-lg text-white hover:bg-sanBlack-elevated hover:text-sanRed">Historia y Evolución</a>
-            <a href="#servicios" class="block px-3 py-2.5 rounded-lg text-white hover:bg-sanBlack-elevated hover:text-sanRed">Servicios Especializados</a>
-            <a href="#catalogo" class="block px-3 py-2.5 rounded-lg text-white hover:bg-sanBlack-elevated hover:text-sanRed">Catálogo Vintage</a>
-            <a href="#contacto" class="block px-3 py-2.5 rounded-lg bg-sanRed text-white font-semibold text-center mt-3">Ubicación e Instagram</a>
         </div>
     </header>
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <section id="inicio" class="relative py-16 sm:py-24 lg:py-28 border-b border-sanBlack-border overflow-hidden">
-        <!-- Resplandor rojo ambiental -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sanRed/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- ========================================================================= -->
+    <!-- VISTA 1: PRINCIPAL (Solo Portada, Identidad, Línea de Tiempo y Contacto)  -->
+    <!-- ========================================================================= -->
+    <main id="view-principal" class="view-panel">
+        <!-- ==================== HERO SECTION (Tipografía Amasis MT Pro) ==================== -->
+        <section id="inicio" class="relative py-16 sm:py-24 border-b border-sanBlack-border overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sanRed/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Columna Izquierda: Texto Principal -->
-                <div class="lg:col-span-7 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sanBlack-elevated border border-sanRed/40 text-xs font-mono uppercase tracking-wider text-sanRed-light mb-6">
-                        <span class="w-2 h-2 rounded-full bg-sanRed animate-pulse"></span>
-                        Proyecto Calíope • Archivo & Tecnología Audiovisual
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 text-center lg:text-left font-amasis">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sanBlack-elevated border border-sanRed/40 text-xs uppercase tracking-wider text-sanRed-light mb-6">
+                            <span class="w-2 h-2 rounded-full bg-sanRed animate-pulse"></span>
+                            Proyecto Calíope • Archivo & Tecnología Audiovisual
+                        </div>
+                        
+                        <p class="font-sanalejo text-2xl sm:text-3xl text-white mb-1">El Cuarto de</p>
+                        <h1 class="font-sanalejo text-6xl sm:text-7xl lg:text-8xl text-sanRed leading-none mb-6 drop-shadow-[0_4px_20px_rgba(220,38,38,0.3)]">
+                            San Alejo
+                        </h1>
+                        
+                        <p class="text-lg sm:text-xl text-white/95 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                            Cámaras análogas y digitales, equipos retro de colección, reparación técnica y digitalización de recuerdos en el corazón de Bogotá.
+                        </p>
                     </div>
-                    
-                    <p class="font-sanalejo text-2xl sm:text-3xl text-white mb-1">El Cuarto de</p>
-                    <h1 class="font-sanalejo text-6xl sm:text-7xl lg:text-8xl text-sanRed leading-none mb-6 drop-shadow-[0_4px_20px_rgba(220,38,38,0.3)]">
-                        San Alejo
-                    </h1>
-                    
-                    <p class="text-lg sm:text-xl text-white/90 font-light leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0">
-                        Cámaras fotográficas análogas y digitales, artículos audiovisuales de colección, reparación técnica especializada y transferencia digital de recuerdos.
-                    </p>
-                    <p class="text-sm sm:text-base text-neutral-300 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
-                        Un punto de encuentro entre generaciones en el corazón de Bogotá, donde la experiencia técnica desde finales de los años ochenta dialoga con la curiosidad creativa de los nuevos realizadores.
-                    </p>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="#catalogo" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-sanRed hover:bg-sanRed-dark text-white font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-sanRed/25">
-                            <i data-lucide="camera" class="w-5 h-5"></i>
-                            Explorar Catálogo
-                        </a>
-                        <a href="#servicios" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-sanBlack-elevated hover:bg-neutral-800 border border-neutral-700 hover:border-sanRed text-white font-medium transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="film" class="w-5 h-5 text-sanRed"></i>
-                            Servicios y Digitalización
-                        </a>
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div class="relative p-6 sm:p-8 rounded-3xl bg-sanBlack-card border border-sanBlack-border shadow-2xl max-w-sm w-full text-center">
+                            <div class="w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-6 rounded-full border-2 border-neutral-800 shadow-[0_0_40px_rgba(220,38,38,0.2)] overflow-hidden bg-black">
+                                <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="100" cy="100" r="98" fill="#000000"/>
+                                    <rect x="88" y="42" width="54" height="106" fill="#FFFFFF"/>
+                                    <polygon points="142,42 114,52 114,136 142,148" fill="#000000"/>
+                                    <polyline points="114,52 114,136 142,148" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+                                    
+                                    <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <ellipse cx="64" cy="52" rx="13" ry="4.5" transform="rotate(-10 64 52)"/>
+                                        <circle cx="62" cy="68" r="8.5"/>
+                                        <line x1="60" y1="77" x2="54" y2="112"/>
+                                        <polyline points="59,84 44,96 55,107"/>
+                                        <polyline points="59,84 71,95 83,95"/>
+                                        <polyline points="54,112 45,132 51,148 45,149"/>
+                                        <polyline points="54,112 67,127 65,144 71,144"/>
+                                    </g>
+
+                                    <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <ellipse cx="139" cy="48" rx="13" ry="4.5" transform="rotate(10 139 48)"/>
+                                        <path d="M 136 58 A 8.5 8.5 0 1 0 136 74" />
+                                        <path d="M 142 58 A 8.5 8.5 0 0 1 142 74" />
+                                        <polyline points="135,84 126,93 116,91"/>
+                                        <line x1="143" y1="76" x2="149" y2="110"/>
+                                        <polyline points="144,83 159,95 148,106"/>
+                                        <polyline points="149,110 158,128 153,143 148,144"/>
+                                        <polyline points="149,110 142,126 142,143"/>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <div class="border-t border-sanBlack-border pt-4">
+                                <p class="font-sanalejo text-2xl text-sanRed mb-1">Enfocar • Tienda Fotográfica</p>
+                                <p class="text-xs font-amasis uppercase tracking-wider text-neutral-300">
+                                    Betamax • VHS-C • Mini DV • Video 8 • Audio & Fotografía Análoga
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Columna Derecha: Emblema Central e Identidad -->
-                <div class="lg:col-span-5 flex flex-col items-center">
-                    <div class="relative p-6 sm:p-8 rounded-3xl bg-sanBlack-card border border-sanBlack-border shadow-2xl max-w-sm w-full text-center">
-                        <!-- Isotipo Grande -->
-                        <div class="w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-6 rounded-full border-2 border-neutral-800 shadow-[0_0_40px_rgba(220,38,38,0.2)] overflow-hidden bg-black">
-                            <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="100" cy="100" r="98" fill="#000000"/>
-                                <rect x="88" y="42" width="54" height="106" fill="#FFFFFF"/>
-                                <polygon points="142,42 114,52 114,136 142,148" fill="#000000"/>
-                                <polyline points="114,52 114,136 142,148" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
-                                
-                                <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <ellipse cx="64" cy="52" rx="13" ry="4.5" transform="rotate(-10 64 52)"/>
-                                    <circle cx="62" cy="68" r="8.5"/>
-                                    <line x1="60" y1="77" x2="54" y2="112"/>
-                                    <polyline points="59,84 44,96 55,107"/>
-                                    <polyline points="59,84 71,95 83,95"/>
-                                    <polyline points="54,112 45,132 51,148 45,149"/>
-                                    <polyline points="54,112 67,127 65,144 71,144"/>
-                                </g>
+        <!-- ==================== IDENTIDAD DEL ESTABLECIMIENTO ==================== -->
+        <section id="perfil" class="py-20 border-b border-sanBlack-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-14 font-amasis">
+                    <span class="text-xs uppercase tracking-widest text-sanRed block mb-2">01 / Identidad del Establecimiento</span>
+                    <h2 class="font-amasis-black font-black text-3xl sm:text-5xl text-sanRed mb-5 leading-tight">Un refugio para la imagen y el sonido</h2>
+                    <p class="text-white text-lg leading-relaxed">
+                        <strong>El Cuarto de San Alejo</strong> es un espacio especializado en cámaras análogas, digitales y retro, reparación electrónica y búsqueda de piezas especiales. Un punto de encuentro entre quienes vivieron la era análoga y las nuevas generaciones de creadores.
+                    </p>
+                </div>
 
-                                <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <ellipse cx="139" cy="48" rx="13" ry="4.5" transform="rotate(10 139 48)"/>
-                                    <path d="M 136 58 A 8.5 8.5 0 1 0 136 74" />
-                                    <path d="M 142 58 A 8.5 8.5 0 0 1 142 74" />
-                                    <polyline points="135,84 126,93 116,91"/>
-                                    <line x1="143" y1="76" x2="149" y2="110"/>
-                                    <polyline points="144,83 159,95 148,106"/>
-                                    <polyline points="149,110 158,128 153,143 148,144"/>
-                                    <polyline points="149,110 142,126 142,143"/>
-                                </g>
-                            </svg>
+                <!-- 6 Diferenciales de Marca -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="award" class="w-5 h-5"></i>
                         </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Trayectoria desde los 80</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Oficio audiovisual y electrónico continuo desde finales de la década de 1980.
+                        </p>
+                    </div>
 
-                        <div class="border-t border-sanBlack-border pt-4">
-                            <p class="font-sanalejo text-2xl text-sanRed mb-1">Enfocar • Tienda Fotográfica</p>
-                            <p class="text-xs font-mono uppercase tracking-wider text-neutral-300">
-                                Betamax • VHS-C • Mini DV • Video 8 • Audio & Fotografía Análoga
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="aperture" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Análogo y Digital</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Dominio técnico de mecanismos ópticos clásicos y cámaras digitales.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="wrench" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Reparación Especializada</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Mantenimiento y rescate técnico de cámaras y equipos audiovisuales.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="disc" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Rescate en Video</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Digitalización de cintas familiares de hasta 45 años de antigüedad.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Piezas Únicas</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Búsqueda por encargo de modelos y repuestos difíciles de hallar.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
+                        <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1.5">Equipos con Garantía</h3>
+                        <p class="text-sm text-neutral-300 leading-relaxed">
+                            Cámaras usadas y retro revisadas, con garantía y accesorios.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== LÍNEA DE TIEMPO (HISTORIA Y EVOLUCIÓN) ==================== -->
+        <section id="historia" class="py-20 bg-sanBlack-card/50 border-b border-sanBlack-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">02 / Crónica de un Oficio</span>
+                    <h2 class="font-amasis-black font-black text-3xl sm:text-5xl text-sanRed mb-3 leading-tight">Historia y Evolución</h2>
+                    <p class="text-white/90 font-amasis text-lg">
+                        La trayectoria de <strong>Don Daniel</strong> y la tradición fotográfica que dio vida al taller.
+                    </p>
+                </div>
+
+                <!-- Línea de Tiempo -->
+                <div class="relative border-l-2 border-sanRed/60 ml-4 md:ml-8 space-y-10 max-w-4xl mx-auto">
+                    <div class="relative pl-8 sm:pl-10">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">1988 – 1990</span>
+                        <h3 class="text-xl font-bold text-white mb-1.5">Primer acercamiento y Sony Beta Móvil</h3>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                            Durante su paso por <strong>Sony</strong> tras el servicio militar, Don Daniel recibió como obsequio una videocámara <strong>Sony Beta móvil</strong> sin pantalla (solo visor óptico), despertando su vocación por la ingeniería audiovisual.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-8 sm:pl-10">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Década de 1990</span>
+                        <h3 class="text-xl font-bold text-white mb-1.5">El taller de reparación electrónica</h3>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                            Abrió su propio taller reparando cámaras, Beta, VHS, DVD y equipos de audio y video, guiado por un familiar técnico de Sony formado en Panamá.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-8 sm:pl-10">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Alrededor del año 2000</span>
+                        <h3 class="text-xl font-bold text-white mb-1.5">Llegada de lo digital y maestros análogos</h3>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                            Integró las primeras cámaras digitales al taller mientras colaboraba con técnicos veteranos como <strong>Don Antonio</strong>, especialista con 45 años de experiencia en mecánica análoga.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-8 sm:pl-10">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Entorno Histórico</span>
+                        <h3 class="text-xl font-bold text-white mb-1.5">Tradición fotográfica en el centro de Bogotá</h3>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                            Ubicado en un sector que llegó a reunir quince locales de fotografía y revelado junto a la <strong>Universidad Jorge Tadeo Lozano</strong> y el legado histórico de <strong>Foto Japón</strong>.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-8 sm:pl-10">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Post-Pandemia & Presente</span>
+                        <h3 class="text-xl font-bold text-white mb-1.5">Especialización en cámaras vintage y retro</h3>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                            Impulsado por el regreso de lo retro, el establecimiento se consolidó en cámaras análogas y digitales, reparación y búsqueda de piezas de colección para nuevas generaciones.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== REDES DE CONTACTO Y UBICACIÓN ==================== -->
+        <section id="contacto" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="rounded-3xl bg-sanBlack-card border border-sanBlack-border p-8 sm:p-12 relative overflow-hidden">
+                    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-sanRed/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                        <div class="lg:col-span-7">
+                            <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">03 / Redes y Contacto Directo</span>
+                            <h2 class="font-amasis-black font-black text-3xl sm:text-5xl text-sanRed mb-3 leading-tight">Abre la puerta a El Cuarto de San Alejo</h2>
+                            <p class="text-white/90 font-amasis text-base sm:text-lg leading-relaxed mb-8">
+                                Visítanos en vitrina o contáctanos para diagnóstico técnico, digitalización y consulta de inventario.
                             </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
+                                    <div class="flex items-center gap-2.5 text-sanRed mb-2">
+                                        <i data-lucide="map-pin" class="w-5 h-5 flex-shrink-0"></i>
+                                        <span class="font-bold text-white">Dirección Física</span>
+                                    </div>
+                                    <p class="text-base xl:text-lg font-semibold text-white mb-1">Calle 22 No. 6 - 24</p>
+                                    <p class="text-xs text-neutral-400">Sector Centro • Bogotá.</p>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
+                                    <div class="flex items-center gap-2.5 text-sanRed mb-2">
+                                        <i data-lucide="instagram" class="w-5 h-5 flex-shrink-0"></i>
+                                        <span class="font-bold text-white">Instagram Oficial</span>
+                                    </div>
+                                    <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv" target="_blank" rel="noopener noreferrer" class="block text-sm xl:text-base font-semibold text-white hover:text-sanRed transition-colors mb-1 break-all">@elcuartode.sanalejo</a>
+                                    <p class="text-xs text-neutral-400">Catálogo y cotizaciones.</p>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
+                                    <div class="flex items-center gap-2.5 text-sanRed mb-2">
+                                        <i data-lucide="phone" class="w-5 h-5 flex-shrink-0"></i>
+                                        <span class="font-bold text-white">Teléfono / Contacto</span>
+                                    </div>
+                                    <a href="tel:+573124174436" class="block text-base xl:text-lg font-semibold text-white hover:text-sanRed transition-colors mb-1">+57 312 417 4436</a>
+                                    <p class="text-xs text-neutral-400">Atención directa en taller.</p>
+                                </div>
+
+                                <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
+                                    <div class="flex items-center gap-2.5 text-sanRed mb-2">
+                                        <i data-lucide="mail" class="w-5 h-5 flex-shrink-0"></i>
+                                        <span class="font-bold text-white">Correo Electrónico</span>
+                                    </div>
+                                    <a href="mailto:elcuartodesanalejo1967@gmail.com" class="block text-xs sm:text-sm font-semibold text-white hover:text-sanRed transition-colors mb-1 break-all">elcuartodesanalejo1967@gmail.com</a>
+                                    <p class="text-xs text-neutral-400">Solicitudes y encargos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="w-full max-w-sm p-6 rounded-2xl bg-black border border-neutral-800 text-center">
+                                <div class="w-24 h-24 mx-auto mb-4 rounded-full border border-neutral-700 overflow-hidden">
+                                    <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="100" cy="100" r="98" fill="#000000"/>
+                                        <rect x="88" y="42" width="54" height="106" fill="#FFFFFF"/>
+                                        <polygon points="142,42 114,52 114,136 142,148" fill="#000000"/>
+                                        <polyline points="114,52 114,136 142,148" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+                                        <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <ellipse cx="64" cy="52" rx="13" ry="4.5" transform="rotate(-10 64 52)"/>
+                                            <circle cx="62" cy="68" r="8.5"/>
+                                            <line x1="60" y1="77" x2="54" y2="112"/>
+                                            <polyline points="59,84 44,96 55,107"/>
+                                            <polyline points="59,84 71,95 83,95"/>
+                                            <polyline points="54,112 45,132 51,148 45,149"/>
+                                            <polyline points="54,112 67,127 65,144 71,144"/>
+                                        </g>
+                                        <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <ellipse cx="139" cy="48" rx="13" ry="4.5" transform="rotate(10 139 48)"/>
+                                            <path d="M 136 58 A 8.5 8.5 0 1 0 136 74" />
+                                            <path d="M 142 58 A 8.5 8.5 0 0 1 142 74" />
+                                            <polyline points="135,84 126,93 116,91"/>
+                                            <line x1="143" y1="76" x2="149" y2="110"/>
+                                            <polyline points="144,83 159,95 148,106"/>
+                                            <polyline points="149,110 158,128 153,143 148,144"/>
+                                            <polyline points="149,110 142,126 142,143"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <p class="font-sanalejo text-3xl text-sanRed mb-1">El Cuarto de San Alejo</p>
+                                <p class="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-4">Enfocar • Tienda Fotográfica</p>
+                                <div class="border-t border-neutral-800 pt-4 text-xs text-neutral-300 space-y-1">
+                                    <p><strong class="text-white">Calle 22 No. 6 - 24</strong> • Bogotá</p>
+                                    <p>Cámaras Fotográficas • Artículos Audiovisuales</p>
+                                    <p class="text-sanRed-light pt-1">En articulación con Proyecto Calíope</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- ==================== PERFIL DEL ESTABLECIMIENTO & DIFERENCIALES ==================== -->
-    <section id="perfil" class="py-20 border-b border-sanBlack-border">
+    <!-- ========================================================================= -->
+    <!-- VISTA 2: SERVICIOS ESPECIALIZADOS (Se despliega al dar clic en el menú)   -->
+    <!-- ========================================================================= -->
+    <section id="view-servicios" class="view-panel hidden py-14 sm:py-20 min-h-[75vh]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mb-14">
-                <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">01 / Identidad del Establecimiento</span>
-                <h2 class="font-sanalejo text-4xl sm:text-5xl text-sanRed mb-6">Un refugio para la imagen y el sonido</h2>
-                <p class="text-white text-lg leading-relaxed mb-4">
-                    <strong>El Cuarto de San Alejo</strong> es un establecimiento especializado en cámaras, fotografía y tecnología audiovisual, con énfasis en equipos análogos, digitales y retro. Su trayectoria está profundamente ligada a la reparación de equipos electrónicos, la comercialización de cámaras y accesorios con respaldo, y la búsqueda de artículos especiales o difíciles de conseguir.
-                </p>
-                <p class="text-neutral-300 leading-relaxed">
-                    Más que una tienda, representa un puente vivo entre generaciones: personas que conocieron de primera mano la fotografía análoga y jóvenes que hoy se acercan a ella por curiosidad, experimentación estética y nuevas formas de creación audiovisual.
-                </p>
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-10 pb-5 border-b border-sanBlack-border">
+                <button type="button" onclick="switchView('principal')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sanBlack-elevated hover:bg-neutral-800 border border-neutral-700 hover:border-sanRed text-sm text-white transition-all">
+                    <i data-lucide="arrow-left" class="w-4 h-4 text-sanRed"></i>
+                    Volver a Inicio
+                </button>
+                <button type="button" onclick="switchView('catalogo')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sanRed/15 hover:bg-sanRed/25 border border-sanRed/40 text-sm text-sanRed-light transition-all">
+                    Ir al Catálogo de Equipos
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
             </div>
 
-            <!-- 6 Diferenciales de Marca -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="award" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Trayectoria desde los años 80</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Experiencia técnica vinculada al mundo audiovisual y electrónico desde finales de la década de 1980.
-                    </p>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="aperture" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Dominio Análogo y Digital</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Conocimiento profundo tanto de mecanismos ópticos y mecánicos clásicos como de sistemas electrónicos digitales.
-                    </p>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="wrench" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Reparación Especializada</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Mantenimiento y rescate técnico de equipos fotográficos y audiovisuales, incluyendo modelos análogos clásicos.
-                    </p>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="disc" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Rescate de Memoria en Video</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Digitalización de cintas y formatos audiovisuales antiguos de hasta 40 o 45 años de antigüedad.
-                    </p>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="compass" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Búsqueda de Piezas Únicas</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Localización por encargo de artículos especiales, repuestos o referencias difíciles de encontrar en el mercado.
-                    </p>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-sanRed/15 border border-sanRed/40 flex items-center justify-center text-sanRed mb-4">
-                        <i data-lucide="shield-check" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Equipos Usados con Garantía</h3>
-                    <p class="text-sm text-neutral-300 leading-relaxed">
-                        Comercialización de cámaras antiguas y de segunda mano revisadas, entregadas con garantía y accesorios.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== HISTORIA Y EVOLUCIÓN (DON DANIEL) ==================== -->
-    <section id="historia" class="py-20 bg-sanBlack-card/50 border-b border-sanBlack-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">02 / Crónica de un Oficio</span>
-                <h2 class="font-sanalejo text-4xl sm:text-5xl text-sanRed mb-4">Historia y Evolución</h2>
-                <p class="text-white/90">
-                    La trayectoria de <strong>Don Daniel</strong> y el ecosistema fotográfico que dio origen a El Cuarto de San Alejo.
-                </p>
-            </div>
-
-            <!-- Línea de Tiempo -->
-            <div class="relative border-l-2 border-sanRed/60 ml-4 md:ml-8 space-y-12 max-w-4xl mx-auto">
-                <!-- Hito 1 -->
-                <div class="relative pl-8 sm:pl-10">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
-                    <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">1988 – 1990</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Primer acercamiento a las cámaras y Sony Beta Móvil</h3>
-                    <p class="text-neutral-300 leading-relaxed">
-                        Tras finalizar su servicio militar y durante su etapa de trabajo con <strong>Sony</strong>, Don Daniel recibió como obsequio una videocámara <strong>Sony Beta móvil</strong> que operaba con casetes Betamax. Aquel equipo no tenía pantalla —contaba únicamente con visor óptico y no reproducía directamente desde la cámara—, pero fue la chispa que despertó su fascinación definitiva por la ingeniería audiovisual.
-                    </p>
-                </div>
-
-                <!-- Hito 2 -->
-                <div class="relative pl-8 sm:pl-10">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
-                    <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Década de 1990</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">El taller de reparación electrónica</h3>
-                    <p class="text-neutral-300 leading-relaxed">
-                        Después de su paso por Sony, abrió su propio taller de reparación electrónica. Allí intervenía cámaras, reproductores Beta y VHS, reproductores de DVD, televisores y equipos de audio y video, nutrido también por la influencia de un familiar técnico de Sony especializado en cámaras con formación de la compañía en Panamá.
-                    </p>
-                </div>
-
-                <!-- Hito 3 -->
-                <div class="relative pl-8 sm:pl-10">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
-                    <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Alrededor del año 2000</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">La llegada de la fotografía digital y maestros análogos</h3>
-                    <p class="text-neutral-300 leading-relaxed">
-                        Con la expansión de la tecnología digital, el taller integró nuevos formatos y sensores. En esta etapa estrechó lazos con técnicos veteranos de gran trayectoria en equipos análogos, entre ellos <strong>Don Antonio</strong>, maestro con cerca de 45 años de experiencia reparando cámaras mecánicas y análogas.
-                    </p>
-                </div>
-
-                <!-- Hito 4 -->
-                <div class="relative pl-8 sm:pl-10">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
-                    <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Entorno Fotográfico Histórico</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">El corazón fotográfico del centro de Bogotá</h3>
-                    <p class="text-neutral-300 leading-relaxed">
-                        En el sector llegaron a convivir alrededor de quince establecimientos dedicados a cámaras, laboratorios y revelado, impulsados por la cercanía de la <strong>Universidad Jorge Tadeo Lozano</strong> y el legado histórico de casas como <strong>Foto Japón</strong> en la cultura fotográfica de Colombia.
-                    </p>
-                </div>
-
-                <!-- Hito 5 -->
-                <div class="relative pl-8 sm:pl-10">
-                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sanRed border-4 border-sanBlack"></span>
-                    <span class="inline-block px-3 py-1 rounded-md bg-sanRed/20 text-sanRed-light font-mono text-xs mb-2">Post-Pandemia & Presente</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Especialización en cámaras vintage y retro</h3>
-                    <p class="text-neutral-300 leading-relaxed">
-                        Tras la pandemia surgió un renovado entusiasmo por los objetos con historia y la estética retro. Desde entonces, <strong>El Cuarto de San Alejo</strong> enfocó su labor en cámaras análogas y digitales, accesorios, reparación especializada y la búsqueda de piezas singulares para coleccionistas y nuevas generaciones.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== SERVICIOS ESPECIALIZADOS ==================== -->
-    <section id="servicios" class="py-20 border-b border-sanBlack-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div>
-                    <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">03 / Taller & Laboratorio</span>
-                    <h2 class="font-sanalejo text-4xl sm:text-5xl text-sanRed">Servicios Especializados</h2>
+                    <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">Taller & Laboratorio</span>
+                    <h2 class="font-amasis-black font-black text-3xl sm:text-5xl text-sanRed leading-tight">Servicios Especializados</h2>
                 </div>
-                <p class="text-neutral-300 max-w-xl text-sm sm:text-base">
-                    Conservamos la memoria audiovisual y devolvemos la vida mecánica y electrónica a tus equipos fotográficos.
+                <p class="text-neutral-300 font-amasis max-w-lg text-base sm:text-lg">
+                    Rescate de memoria audiovisual y mantenimiento técnico para tus equipos.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Servicio 1: Digitalización -->
                 <div class="p-8 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
@@ -421,7 +534,7 @@
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-3">Digitalización de Formatos Audiovisuales</h3>
                         <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-5">
-                            Transferimos grabaciones de cintas y soportes análogos a archivos digitales modernos para rescatar recuerdos familiares de hasta <strong>40 o 45 años de antigüedad</strong> y preservar la memoria visual de épocas pasadas.
+                            Convertimos cintas y soportes antiguos (de hasta <strong>45 años</strong>) a archivos digitales para conservar tus recuerdos familiares.
                         </p>
                         
                         <div class="mb-6">
@@ -433,16 +546,15 @@
                                 <span class="px-3 py-1.5 rounded-lg bg-sanBlack-elevated border border-neutral-700 text-white text-xs font-mono">Betamax</span>
                                 <span class="px-3 py-1.5 rounded-lg bg-sanBlack-elevated border border-neutral-700 text-white text-xs font-mono">Mini DVD</span>
                                 <span class="px-3 py-1.5 rounded-lg bg-sanBlack-elevated border border-neutral-700 text-white text-xs font-mono">DVD</span>
-                                <span class="px-3 py-1.5 rounded-lg bg-sanBlack-elevated border border-sanRed/40 text-sanRed-light text-xs font-mono">+ Otros según viabilidad técnica</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-sanBlack-elevated border border-sanRed/40 text-sanRed-light text-xs font-mono">+ Otros según viabilidad</span>
                             </div>
                         </div>
                     </div>
                     <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-sanRed hover:text-sanRed-light transition-colors">
-                        Consultar digitalización de cintas <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        Consultar digitalización <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                     </a>
                 </div>
 
-                <!-- Servicio 2: Reparación -->
                 <div class="p-8 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
@@ -451,71 +563,81 @@
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-3">Reparación de Cámaras Análogas y Digitales</h3>
                         <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-5">
-                            Diagnóstico, calibración y reparación de cámaras fotográficas análogas, digitales y equipos audiovisuales. En un contexto donde cada vez quedan menos especialistas en mecánica y electrónica clásica, mantenemos vivo el oficio técnico artesanal.
+                            Diagnóstico, calibración y mantenimiento mecánico y electrónico especializado para devolverle la funcionalidad a tus cámaras clásicas.
                         </p>
                         <ul class="space-y-2 text-sm text-neutral-300 mb-6">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sanRed"></i> Revisión de obturadores, arrastre y óptica</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sanRed"></i> Diagnóstico electrónico en cámaras digitales y videocámaras</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sanRed"></i> Obturadores, arrastre y óptica análoga</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sanRed"></i> Electrónica en cámaras digitales y videocámaras</li>
                         </ul>
                     </div>
                     <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-sanRed hover:text-sanRed-light transition-colors">
-                        Agendar revisión de equipo <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        Agendar revisión <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                     </a>
                 </div>
 
-                <!-- Servicio 3: Venta con Garantía -->
                 <div class="p-8 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-mono uppercase px-3 py-1 rounded-full bg-sanRed/20 text-sanRed-light border border-sanRed/30">Comercialización</span>
                             <i data-lucide="camera" class="w-6 h-6 text-sanRed"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-3">Venta de Cámaras Antiguas y Equipos Usados</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Venta de Cámaras Antiguas y Usadas</h3>
                         <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-5">
-                            Nuestro enfoque está dedicado casi exclusivamente a productos retro, antiguos y de segunda mano cuidadosamente seleccionados. Cada cámara se entrega probada, con sus accesorios correspondientes y respaldo de garantía del taller.
+                            Equipos retro y de segunda mano probados en taller, entregados listos para usar con garantía y sus accesorios.
                         </p>
                     </div>
-                    <a href="#catalogo" class="inline-flex items-center gap-2 text-sm font-semibold text-sanRed hover:text-sanRed-light transition-colors">
-                        Ver categorías del catálogo <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                    </a>
+                    <button type="button" onclick="switchView('catalogo')" class="inline-flex items-center gap-2 text-sm font-semibold text-sanRed hover:text-sanRed-light transition-colors">
+                        Explorar catálogo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
                 </div>
 
-                <!-- Servicio 4: Búsqueda de Artículos Especiales -->
                 <div class="p-8 rounded-2xl bg-sanBlack-card border border-sanBlack-border card-hover flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-mono uppercase px-3 py-1 rounded-full bg-sanRed/20 text-sanRed-light border border-sanRed/30">Curaduría & Encargos</span>
                             <i data-lucide="search" class="w-6 h-6 text-sanRed"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-3">Accesorios y Búsqueda de Artículos Especiales</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Accesorios y Artículos Especiales</h3>
                         <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-5">
-                            Contamos con lentes, estuches, flashes, proyectores y accesorios audiovisuales. Además, nos especializamos en localizar modelos específicos, piezas antiguas o referencias difíciles de conseguir para coleccionistas y producciones.
+                            Lentes, flashes, proyectores y localización por encargo de referencias singulares o difíciles de encontrar.
                         </p>
                     </div>
                     <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-sanRed hover:text-sanRed-light transition-colors">
-                        Solicitar búsqueda por encargo <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        Solicitar encargo <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== CATÁLOGO INTERACTIVO ==================== -->
-    <section id="catalogo" class="py-20 bg-sanBlack-card/40 border-b border-sanBlack-border">
+    <!-- ========================================================================= -->
+    <!-- VISTA 3: CATÁLOGO DE EQUIPOS (Con tus 9 Imágenes Subidas)                 -->
+    <!-- ========================================================================= -->
+    <section id="view-catalogo" class="view-panel hidden py-14 sm:py-20 min-h-[75vh]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-10">
-                <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">04 / Archivo & Vitrina</span>
-                <h2 class="font-sanalejo text-4xl sm:text-5xl text-sanRed mb-4">Catálogo de Equipos y Referencias</h2>
-                <p class="text-white/90 text-sm sm:text-base">
-                    Explora las líneas de equipos que manejamos y las piezas históricas de referencia en nuestra colección.
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-10 pb-5 border-b border-sanBlack-border">
+                <button type="button" onclick="switchView('principal')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sanBlack-elevated hover:bg-neutral-800 border border-neutral-700 hover:border-sanRed text-sm text-white transition-all">
+                    <i data-lucide="arrow-left" class="w-4 h-4 text-sanRed"></i>
+                    Volver a Inicio
+                </button>
+                <button type="button" onclick="switchView('servicios')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sanRed/15 hover:bg-sanRed/25 border border-sanRed/40 text-sm text-sanRed-light transition-all">
+                    Ver Servicios Especializados
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">Archivo & Vitrina</span>
+                <h2 class="font-amasis-black font-black text-3xl sm:text-5xl text-sanRed mb-3 leading-tight">Catálogo de Equipos y Referencias</h2>
+                <p class="text-white/90 font-amasis text-base sm:text-lg">
+                    Muestra visual de referencias que puedes encontrar en vitrina e hitos de nuestra colección.
                 </p>
             </div>
 
-            <!-- Aviso importante de verificación física -->
-            <div class="max-w-4xl mx-auto mb-10 p-4 rounded-xl bg-sanBlack-elevated border border-sanRed/40 flex items-start gap-3.5">
-                <i data-lucide="info" class="w-5 h-5 text-sanRed flex-shrink-0 mt-0.5"></i>
-                <p class="text-xs sm:text-sm text-neutral-200 leading-relaxed">
-                    <strong class="text-white">Nota de inventario dinámico:</strong> Por la naturaleza única de los equipos vintage y usados, las referencias mostradas representan nuestras categorías e hitos históricos. Antes de confirmar compra o precio, verifica disponibilidad física actual en tienda o vía Instagram.
+            <div class="max-w-3xl mx-auto mb-10 p-3.5 rounded-xl bg-sanBlack-elevated border border-sanRed/40 flex items-center gap-3">
+                <i data-lucide="info" class="w-5 h-5 text-sanRed flex-shrink-0"></i>
+                <p class="text-xs sm:text-sm text-neutral-200">
+                    <strong class="text-white">Inventario dinámico:</strong> Las fotografías representan modelos de referencia de cada línea. Consulta disponibilidad actual en tienda o vía Instagram.
                 </p>
             </div>
 
@@ -544,23 +666,24 @@
                 </button>
             </div>
 
-            <!-- Cuadrícula de Productos / Referencias -->
+            <!-- Cuadrícula de Productos / Referencias con tus 9 Imágenes Subidas -->
             <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- 1. 35mm — Mecánicas y SLR (Rollo analógico) -->
-                <article data-category="analogas" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 1. 35mm — Mecánicas y SLR (image_1f1ca2.png) -->
+                <article data-category="analogas" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-sanRed/15 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase">35mm • Rollo Analógico</span>
-                            <i data-lucide="aperture" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">35mm Mecánicas y SLR</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase shadow">35mm • Rollo Analógico</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Kodak EC35 / 35mm</span>
+                            <img src="./image_1f1ca2.png" alt="Cámara analógica Kodak EC35 de 35mm" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Modelos Identificados en Vitrina</span>
-                            <ul class="space-y-2.5 text-sm text-neutral-300">
+                            <h3 class="text-xl font-bold text-white mb-1">35mm Mecánicas y SLR</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Modelos de Referencia</span>
+                            <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Yashica FX-3 / FX-3 Super:</strong> SLR mecánica de 35mm negra (junto a rollo Fujicolor 100).</span>
+                                    <span><strong class="text-white">Yashica FX-3 / FX-3 Super:</strong> SLR mecánica de 35mm negra.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -568,11 +691,11 @@
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Compacta Analógica 35mm Negra:</strong> Tipo Point & Shoot años 80/90 (estilo Minolta/Pentax/Canon Sure Shot).</span>
+                                    <span><strong class="text-white">Compacta Analógica 35mm:</strong> Tipo Point & Shoot (Kodak EC35, Minolta, Pentax, Canon Sure Shot).</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Cámara Pokémon (Pikachu):</strong> Compacta analógica amarilla de 35mm de colección.</span>
+                                    <span><strong class="text-white">Cámara Pokémon (Pikachu):</strong> Compacta analógica amarilla de 35mm.</span>
                                 </li>
                             </ul>
                         </div>
@@ -585,16 +708,17 @@
                     </div>
                 </article>
 
-                <!-- 2A. CCD Retro / Digicams — Sony Cyber-shot -->
-                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 2A. CCD Retro / Digicams — Sony Cyber-shot (image_1f1d04.png) -->
+                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-neutral-800 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">CCD Retro • Sony</span>
-                            <i data-lucide="camera" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Sony Cyber-shot</span>
+                        <div class="h-52 bg-neutral-100 flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">CCD Retro • Sony</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Sony Cyber-shot</span>
+                            <img src="./image_1f1d04.png" alt="Sony Cyber-shot Carl Zeiss" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Series DSC-T, DSC-W & DSC-S</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Sony Cyber-shot</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Series DSC-T, DSC-W & DSC-S</span>
                             <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -602,11 +726,11 @@
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Serie DSC-W / DSC-S Plateadas:</strong> Lente retractable (sticker azul) y edición 7.2 MP con etiquetas amarillas.</span>
+                                    <span><strong class="text-white">Serie DSC-W / DSC-S Plateadas:</strong> Lente retractable y edición 7.2 MP.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Serie W Negra:</strong> Lente Carl Zeiss.</span>
+                                    <span><strong class="text-white">Serie W Negra:</strong> Óptica Carl Zeiss.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -623,16 +747,17 @@
                     </div>
                 </article>
 
-                <!-- 2B. CCD Retro / Digicams — Canon PowerShot -->
-                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 2B. CCD Retro / Digicams — Canon PowerShot (image_1f1d60.png) -->
+                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-neutral-800 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">CCD Retro • Canon</span>
-                            <i data-lucide="camera" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Canon PowerShot</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">CCD Retro • Canon</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Canon PowerShot A460</span>
+                            <img src="./image_1f1d60.png" alt="Canon PowerShot A460" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Series A, IXUS & ELPH</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Canon PowerShot</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Series A, IXUS & ELPH</span>
                             <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -657,20 +782,21 @@
                     </div>
                 </article>
 
-                <!-- 2C. CCD Retro / Digicams — Lumix, Samsung, Kodak, Olympus & Toy Cam -->
-                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 2C. CCD Retro / Digicams — Lumix & Multimarcas (image_1f1da3.png) -->
+                <article data-category="digitales" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-neutral-800 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">CCD Retro • Multimarcas</span>
-                            <i data-lucide="sparkles" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Lumix, Samsung & Más</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">CCD Retro • Multimarcas</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Panasonic Lumix</span>
+                            <img src="./image_1f1da3.png" alt="Panasonic Lumix azul metálico" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Digicams Variadas</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Lumix, Samsung & Más</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Digicams Variadas</span>
                             <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Panasonic Lumix:</strong> DMC-FH/FS fucsia metálico, DMC-FS/FP negra y DMC-LS/FS blanca.</span>
+                                    <span><strong class="text-white">Panasonic Lumix:</strong> DMC-FH/FS fucsia metálico, azul metálico, DMC-FS/FP negra y blanca.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -695,20 +821,21 @@
                     </div>
                 </article>
 
-                <!-- 3. DSLR / Bridge (Semiprofesionales tipo Réflex) -->
-                <article data-category="bridge" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 3. DSLR / Bridge (image_1f20e7.png) -->
+                <article data-category="bridge" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-sanRed/15 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">Superzoom • Estética Réflex</span>
-                            <i data-lucide="focus" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">DSLR / Bridge</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">Superzoom • Réflex</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Lumix FZ100 Leica</span>
+                            <img src="./image_1f20e7.png" alt="Panasonic Lumix FZ100 superzoom" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Semiprofesionales tipo Réflex</span>
+                            <h3 class="text-xl font-bold text-white mb-1">DSLR / Bridge</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Semiprofesionales tipo Réflex</span>
                             <ul class="space-y-3 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
-                                    <span><strong class="text-white">Panasonic Lumix DMC-FZ:</strong> Cuerpo negro ergonomía réflex equipada con óptica Leica superzoom.</span>
+                                    <span><strong class="text-white">Panasonic Lumix DMC-FZ (FZ100):</strong> Cuerpo negro ergonomía réflex equipada con óptica Leica superzoom.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -725,16 +852,17 @@
                     </div>
                 </article>
 
-                <!-- 4. Fujifilm Instax (Instantáneas) -->
-                <article data-category="instantaneas" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 4. Fujifilm Instax (image_1f2161.jpg) -->
+                <article data-category="instantaneas" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-neutral-800 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase">Revelado Instantáneo</span>
-                            <i data-lucide="image" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Fujifilm Instax</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase shadow">Revelado Instantáneo</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Instax Mini 8</span>
+                            <img src="./image_1f2161.jpg" alt="Fujifilm Instax Mini 8 rosa" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Series Mini 8, Mini 9 & Mini 11</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Fujifilm Instax</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Series Mini 8, Mini 9 & Mini 11</span>
                             <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -759,16 +887,17 @@
                     </div>
                 </article>
 
-                <!-- 5. Video 8 / Hi8 / Digital8 -->
-                <article data-category="videocamaras" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 5. Video 8 / Hi8 / Digital8 (image_1f24fd.png) -->
+                <article data-category="videocamaras" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-sanRed/15 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">Video8 • Hi8 • Digital8</span>
-                            <i data-lucide="video" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Sony Handycam 8mm</span>
+                        <div class="h-52 bg-white flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">Video8 • Hi8 • Digital8</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Sony Handycam Hi8</span>
+                            <img src="./image_1f24fd.png" alt="Sony Handycam Hi8" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Cintas de 8mm Analógicas y Digitales</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Sony Handycam 8mm</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Cintas de 8mm Analógicas y Digitales</span>
                             <ul class="space-y-3 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -789,16 +918,17 @@
                     </div>
                 </article>
 
-                <!-- 6. Mini DV / Videocámaras Compactas Digitales (SD / HD) -->
-                <article data-category="videocamaras" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 6. Mini DV / Videocámaras Compactas Digitales (image_1f2541.png) -->
+                <article data-category="videocamaras" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-sanRed/15 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-neutral-800 border border-neutral-600 text-white text-[10px] font-mono uppercase">Mini DV • SD / HD</span>
-                            <i data-lucide="film" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Videocámaras Compactas</span>
+                        <div class="h-52 bg-neutral-100 flex items-center justify-center p-5 border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-black text-white text-[10px] font-mono uppercase shadow">Mini DV • SD / HD</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Panasonic Full HD</span>
+                            <img src="./image_1f2541.png" alt="Videocámara Panasonic HDC-TM60" class="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Camcorders de Mano SD / HD</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Videocámaras Compactas</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Camcorders de Mano SD / HD</span>
                             <ul class="space-y-2 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -827,16 +957,17 @@
                     </div>
                 </article>
 
-                <!-- 7. Colección Histórica y Accesorios (Piccolina 1914 y Proyectores) -->
-                <article data-category="coleccion" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between">
+                <!-- 7. Colección Histórica y Accesorios (image_1f2825.jpg) -->
+                <article data-category="coleccion" class="catalog-item rounded-2xl bg-sanBlack-card border border-sanBlack-border overflow-hidden card-hover flex flex-col justify-between group">
                     <div>
-                        <div class="h-40 bg-gradient-to-br from-neutral-900 via-black to-sanRed/20 flex flex-col items-center justify-center p-5 border-b border-sanBlack-border relative">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase">Archivo & Accesorios</span>
-                            <i data-lucide="landmark" class="w-10 h-10 text-sanRed mb-2"></i>
-                            <span class="font-sanalejo text-xl text-white">Antigüedades y Proyección</span>
+                        <div class="h-52 bg-neutral-900 flex items-center justify-center border-b border-sanBlack-border relative overflow-hidden">
+                            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded bg-sanRed text-white text-[10px] font-mono uppercase shadow">Archivo & Accesorios</span>
+                            <span class="absolute bottom-2 right-3 z-10 px-2 py-0.5 rounded bg-black/80 text-white text-[10px] font-mono">Ref. Piccolina 1914 (Fuelle)</span>
+                            <img src="./image_1f2825.jpg" alt="Cámara histórica de fuelle Piccolina 1914" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-mono text-sanRed-light block mb-2">Piezas Singulares y Complementos</span>
+                            <h3 class="text-xl font-bold text-white mb-1">Antigüedades y Proyección</h3>
+                            <span class="text-xs font-mono text-sanRed-light block mb-3">Piezas Singulares y Complementos</span>
                             <ul class="space-y-2.5 text-sm text-neutral-300">
                                 <li class="flex items-start gap-2">
                                     <span class="text-sanRed font-bold">•</span>
@@ -861,107 +992,6 @@
         </div>
     </section>
 
-    <!-- ==================== UBICACIÓN Y CONTACTO ==================== -->
-    <section id="contacto" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-3xl bg-sanBlack-card border border-sanBlack-border p-8 sm:p-12 relative overflow-hidden">
-                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-sanRed/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-                    <div class="lg:col-span-7">
-                        <span class="text-xs font-mono uppercase tracking-widest text-sanRed block mb-2">06 / Visítanos o Escríbenos</span>
-                        <h2 class="font-sanalejo text-4xl sm:text-5xl text-sanRed mb-4">Abre la puerta a El Cuarto de San Alejo</h2>
-                        <p class="text-white/90 text-base sm:text-lg leading-relaxed mb-8">
-                            Ven a conocer las cámaras en vitrina, trae tu equipo para diagnóstico técnico o consulta por la digitalización de tus cintas y artículos especiales.
-                        </p>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <!-- Dirección -->
-                            <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
-                                <div class="flex items-center gap-2.5 text-sanRed mb-2">
-                                    <i data-lucide="map-pin" class="w-5 h-5 flex-shrink-0"></i>
-                                    <span class="font-bold text-white">Dirección Física</span>
-                                </div>
-                                <p class="text-base xl:text-lg font-semibold text-white mb-1">Calle 22 No. 6 - 24</p>
-                                <p class="text-xs text-neutral-400">Sector Centro / Cercanías Universidad Jorge Tadeo Lozano, Bogotá.</p>
-                            </div>
-
-                            <!-- Instagram -->
-                            <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
-                                <div class="flex items-center gap-2.5 text-sanRed mb-2">
-                                    <i data-lucide="instagram" class="w-5 h-5 flex-shrink-0"></i>
-                                    <span class="font-bold text-white">Instagram Oficial</span>
-                                </div>
-                                <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv" target="_blank" rel="noopener noreferrer" class="block text-sm xl:text-base font-semibold text-white hover:text-sanRed transition-colors mb-1 break-all">@elcuartode.sanalejo</a>
-                                <p class="text-xs text-neutral-400">Consultas de catálogo, disponibilidad y cotizaciones directas.</p>
-                            </div>
-
-                            <!-- Teléfono -->
-                            <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
-                                <div class="flex items-center gap-2.5 text-sanRed mb-2">
-                                    <i data-lucide="phone" class="w-5 h-5 flex-shrink-0"></i>
-                                    <span class="font-bold text-white">Teléfono / Contacto</span>
-                                </div>
-                                <a href="tel:+573124174436" class="block text-base xl:text-lg font-semibold text-white hover:text-sanRed transition-colors mb-1">+57 312 417 4436</a>
-                                <p class="text-xs text-neutral-400">Atención directa para reparaciones, digitalización y encargos.</p>
-                            </div>
-
-                            <!-- Correo Electrónico -->
-                            <div class="p-5 rounded-2xl bg-sanBlack-elevated border border-neutral-800 overflow-hidden">
-                                <div class="flex items-center gap-2.5 text-sanRed mb-2">
-                                    <i data-lucide="mail" class="w-5 h-5 flex-shrink-0"></i>
-                                    <span class="font-bold text-white">Correo Electrónico</span>
-                                </div>
-                                <a href="mailto:elcuartodesanalejo1967@gmail.com" class="block text-xs sm:text-sm font-semibold text-white hover:text-sanRed transition-colors mb-1 break-all">elcuartodesanalejo1967@gmail.com</a>
-                                <p class="text-xs text-neutral-400">Envío de solicitudes, cotizaciones e información detallada.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta Visual Resumen -->
-                    <div class="lg:col-span-5 flex justify-center">
-                        <div class="w-full max-w-sm p-6 rounded-2xl bg-black border border-neutral-800 text-center">
-                            <div class="w-24 h-24 mx-auto mb-4 rounded-full border border-neutral-700 overflow-hidden">
-                                <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="100" cy="100" r="98" fill="#000000"/>
-                                    <rect x="88" y="42" width="54" height="106" fill="#FFFFFF"/>
-                                    <polygon points="142,42 114,52 114,136 142,148" fill="#000000"/>
-                                    <polyline points="114,52 114,136 142,148" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
-                                    <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <ellipse cx="64" cy="52" rx="13" ry="4.5" transform="rotate(-10 64 52)"/>
-                                        <circle cx="62" cy="68" r="8.5"/>
-                                        <line x1="60" y1="77" x2="54" y2="112"/>
-                                        <polyline points="59,84 44,96 55,107"/>
-                                        <polyline points="59,84 71,95 83,95"/>
-                                        <polyline points="54,112 45,132 51,148 45,149"/>
-                                        <polyline points="54,112 67,127 65,144 71,144"/>
-                                    </g>
-                                    <g stroke="#DC2626" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <ellipse cx="139" cy="48" rx="13" ry="4.5" transform="rotate(10 139 48)"/>
-                                        <path d="M 136 58 A 8.5 8.5 0 1 0 136 74" />
-                                        <path d="M 142 58 A 8.5 8.5 0 0 1 142 74" />
-                                        <polyline points="135,84 126,93 116,91"/>
-                                        <line x1="143" y1="76" x2="149" y2="110"/>
-                                        <polyline points="144,83 159,95 148,106"/>
-                                        <polyline points="149,110 158,128 153,143 148,144"/>
-                                        <polyline points="149,110 142,126 142,143"/>
-                                    </g>
-                                </svg>
-                            </div>
-                            <p class="font-sanalejo text-3xl text-sanRed mb-1">El Cuarto de San Alejo</p>
-                            <p class="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-4">Enfocar • Tienda Fotográfica</p>
-                            <div class="border-t border-neutral-800 pt-4 text-xs text-neutral-300 space-y-1">
-                                <p><strong class="text-white">Calle 22 No. 6 - 24</strong> • Bogotá</p>
-                                <p>Cámaras Fotográficas • Artículos Audiovisuales</p>
-                                <p class="text-sanRed-light pt-1">En articulación con Proyecto Calíope</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ==================== FOOTER ==================== -->
     <footer class="bg-black border-t border-sanBlack-border py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
@@ -976,44 +1006,59 @@
         </div>
     </footer>
 
-    <!-- Botón Flotante Directo a Instagram -->
-    <a href="https://www.instagram.com/elcuartode.sanalejo?knvt=cWIxMHBnbW5yYXRv"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Ir al Instagram oficial de El Cuarto de San Alejo"
-       title="Síguenos en Instagram @elcuartode.sanalejo"
-       class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-sanRed hover:bg-sanRed-dark text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-[0_8px_25px_rgba(220,38,38,0.45)] border border-red-400/30 transition-all duration-300 hover:scale-105">
-        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
-        <span class="hidden sm:inline text-sm font-semibold tracking-wide">Instagram</span>
-    </a>
-
     <!-- Scripts de Interactividad -->
     <script>
-        // Inicializar iconos Lucide
         lucide.createIcons();
 
-        // Menú móvil
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const dotsMenuBtn = document.getElementById('dots-menu-btn');
+        const dotsDropdown = document.getElementById('dots-dropdown');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        dotsMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = dotsDropdown.classList.toggle('hidden');
+            dotsMenuBtn.setAttribute('aria-expanded', !isHidden);
         });
 
-        // Cerrar menú móvil al hacer clic en un enlace
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        document.addEventListener('click', (e) => {
+            if (!dotsDropdown.contains(e.target) && !dotsMenuBtn.contains(e.target)) {
+                dotsDropdown.classList.add('hidden');
+                dotsMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        function switchView(viewName) {
+            const views = {
+                principal: document.getElementById('view-principal'),
+                servicios: document.getElementById('view-servicios'),
+                catalogo: document.getElementById('view-catalogo')
+            };
+
+            Object.keys(views).forEach(key => {
+                if (key === viewName) {
+                    views[key].classList.remove('hidden');
+                } else {
+                    views[key].classList.add('hidden');
+                }
             });
-        });
 
-        // Filtrado interactivo del catálogo
+            document.querySelectorAll('.nav-option').forEach(btn => {
+                if (btn.getAttribute('data-nav') === viewName) {
+                    btn.classList.add('bg-sanRed/15', 'border-l-2', 'border-sanRed');
+                } else {
+                    btn.classList.remove('bg-sanRed/15', 'border-l-2', 'border-sanRed');
+                }
+            });
+
+            dotsDropdown.classList.add('hidden');
+            dotsMenuBtn.setAttribute('aria-expanded', 'false');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         const filterButtons = document.querySelectorAll('.filter-btn');
         const catalogItems = document.querySelectorAll('.catalog-item');
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Actualizar estilos activos de los botones
                 filterButtons.forEach(b => {
                     b.classList.remove('bg-sanRed', 'text-white', 'font-semibold');
                     b.classList.add('bg-sanBlack-elevated', 'text-neutral-300', 'font-medium', 'border', 'border-neutral-800');
